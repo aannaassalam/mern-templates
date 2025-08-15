@@ -1,0 +1,27 @@
+{
+  "name": "mern-templates",
+  "version": "1.0.1",
+  "main": "index.js",
+  "scripts": {
+    "init": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aannaassalam/mern-templates.git"
+  },
+  "author": "Anas Alam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aannaassalam/mern-templates/issues"
+  },
+  "homepage": "https://github.com/aannaassalam/mern-templates#readme",
+  "description": "",
+  "dependencies": {
+    "degit": "^2.8.4",
+    "inquirer": "^12.9.2",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1"
+  }
+}
