@@ -5,6 +5,38 @@ import path from "path";
 import fs from "fs";
 import fetch from "node-fetch";
 
+function updatePackageNames(targetDir, newName) {
+    const packageJsonPath = path.join(targetDir, "package.json");
+    const packageLockPath = path.join(targetDir, "package-lock.json");
+
+    if (fs.existsSync(packageJsonPath)) {
+        const pkg = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
+        pkg.name = newName;
+        fs.writeFileSync(packageJsonPath, JSON.stringify(pkg, null, 2));
+        console.log(`📦 Updated package.json name to "${newName}"`);
+    }
+
+    if (fs.existsSync(packageLockPath)) {
+        const pkgLock = JSON.parse(fs.readFileSync(packageLockPath, "utf-8"));
+        pkgLock.name = newName;
+        fs.writeFileSync(packageLockPath, JSON.stringify(pkgLock, null, 2));
+        console.log(`📦 Updated package-lock.json name to "${newName}"`);
+    }
+}
+
+function validateProjectName(name) {
+    // npm + GitHub compatible regex
+    const regex = /^[a-z0-9][a-z0-9-_]*$/;
+
+    if (!name) return "Project name cannot be empty.";
+    if (!regex.test(name)) {
+        return "Name must contain only lowercase letters, numbers, hyphens, or underscores, and start with a letter/number.";
+    }
+    if (name.length > 214) return "Name cannot be longer than 214 characters.";
+
+    return true;
+}
+
 const REPOS_JSON_URL =
     "https://raw.githubusercontent.com/aannaassalam/project-templates/main/repos.json";
 
@@ -60,12 +92,13 @@ async function fetchReposConfig() {
     //     repoUrl = customUrl;
     //   }
 
-    const { folderName } = await inquirer.prompt([
+    const { projectName } = await inquirer.prompt([
         {
             type: "input",
-            name: "folderName",
-            message: "Enter folder name to clone into:",
+            name: "projectName",
+            message: "Enter project name to clone into:",
             default: "my-project",
+            validate: validateProjectName,
         },
     ]);
 
@@ -78,6 +111,8 @@ async function fetchReposConfig() {
     console.log(`📥 Downloading template into ${targetDir}...`);
     const emitter = degit(repoUrl);
     await emitter.clone(targetDir);
+
+    updatePackageNames(targetDir, projectName);
 
     //   const { reInit } = await inquirer.prompt([
     //     {
