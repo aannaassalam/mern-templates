@@ -9,6 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/aannaassalam/mern-templates.git"
   },
+  "type": "module",
   "author": "Anas Alam",
   "license": "ISC",
   "bugs": {
@@ -17,9 +18,13 @@
   "homepage": "https://github.com/aannaassalam/mern-templates#readme",
   "description": "",
   "dependencies": {
+    "chalk": "^5.6.0",
     "degit": "^2.8.4",
+    "figlet": "^1.8.2",
+    "gradient-string": "^3.0.0",
     "inquirer": "^12.9.2",
-    "node-fetch": "^3.3.2"
+    "node-fetch": "^3.3.2",
+    "ora": "^8.2.0"
   },
   "devDependencies": {
     "@types/node": "^24.2.1"
