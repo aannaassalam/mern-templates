@@ -1,0 +1,30 @@
+{
+  "root": true,
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    // "plugin:tailwindcss/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["simple-import-sort", "unused-imports", "jsx-a11y"],
+  "rules": {
+    "no-unused-vars": "off",
+    "simple-import-sort/imports": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/no-empty-interface": "off",
+    // Automatically sort imports
+    "simple-import-sort/imports": "off",
+    "simple-import-sort/exports": "off",
+    // Accessibility and SEO-related rules
+    "jsx-a11y/alt-text": "warn", // Ensure alt text is provided for <img>, <area>, etc.
+    "jsx-a11y/anchor-has-content": "warn", // Ensure <a> tags have content for better SEO
+    "jsx-a11y/anchor-is-valid": "warn" // Ensure valid href attributes in <a> tags
+  }
+}

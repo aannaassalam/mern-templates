@@ -204,4 +204,6 @@ async function fetchReposConfig() {
     console.log(chalk.cyanBright(`\n\n\n➡ cd ${projectName}`));
     console.log(chalk.cyanBright("➡ npm install / yarn install"));
     console.log(chalk.cyanBright("➡ Start building 🚀\n"));
+
+    process.exit(0);
 })();
